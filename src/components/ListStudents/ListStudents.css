@@ -1,0 +1,30 @@
+.listCard{
+    margin-top: 20px;
+ }
+.row-2{
+    margin-left: 20px;
+    display: flex;
+}
+.col-md-3{
+    width: 20%;
+    gap: 1rem;
+    
+}
+.litStudents{
+    height: 100vh;
+}
+.titleStudents{
+    background: #F8F8F8;
+    display: flex;
+    height: 70px;
+    border-bottom:1px solid black;
+    
+}
+.titleStudents label{
+    margin-left: 40px;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 26.82px;
+    margin-top: 20px;
+
+}

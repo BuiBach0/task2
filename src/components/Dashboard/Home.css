@@ -1,0 +1,133 @@
+.listCard{
+ }
+.row-2{
+    margin-left: 20px;
+    display: flex;
+    
+}
+.col-md-3{
+    width: 20%;
+    gap: 1rem;
+    
+}
+
+.students {
+    width: 250px;
+    height: 150px;
+    border-radius: 8px;
+    margin-left: 20px;
+    background: #F0F9FF;
+}
+
+.course{
+    width: 250px;
+    height: 150px;
+    border-radius: 8px;
+    margin-left: 70px;
+    background: #FEF6FB;
+
+}
+.payment{
+    width: 250px;
+    height: 150px;
+    border-radius: 8px;
+    margin-left: 120px;
+    background: #FEFBEC;
+
+}
+.users{
+    width: 250px;
+    height: 150px;
+    border-radius: 8px;
+    margin-left: 170px;    
+    background: linear-gradient(110.42deg, #FEAF00 18.27%, #F8D442 91.84%);
+
+}
+.students svg{
+    margin-right: 160px;
+    margin-top: 10px;
+}
+.students label{
+    margin-right: 160px;
+    margin-top: 15px;
+    margin-left: 23px;
+}
+.students p{
+    margin-top: 10px;
+    margin-left: 145px;
+    font-family: Montserrat;
+    font-weight: 700;
+    line-height: 36.57px;
+    font-size: 30px;
+}
+.course svg{
+    margin-right: 160px;
+    margin-top: 10px;
+}
+.course label{
+    margin-left: 29px;
+    margin-right: 160px;
+    margin-top: 15px;
+}
+.course p{
+    margin-top: 10px;
+    margin-left: 145px;
+    font-family: Montserrat;
+    font-weight: 700;
+    line-height: 36.57px;
+    font-size: 30px;
+}
+.course svg{
+    margin-right: 160px;
+    margin-top: 10px;
+}
+.course label{
+    margin-left: 29px;
+    margin-right: 160px;
+    margin-top: 15px;
+}
+.course p{
+    margin-top: 10px;
+    margin-left: 145px;
+    font-family: Montserrat;
+    font-weight: 700;
+    line-height: 36.57px;
+    font-size: 30px;
+}
+.payment svg{
+    margin-right: 160px;
+    margin-top: 10px;
+}
+.payment label{
+    margin-left: 29px;
+    margin-right: 160px;
+    margin-top: 10px;
+
+}
+.payment p{
+    margin-top: 10px;
+    margin-left: 40px;
+    font-family: Montserrat;
+    font-weight: 700;
+    line-height: 36.57px;
+    font-size: 30px;
+}
+.users svg{
+    margin-right: 160px;
+    margin-top: 10px;
+}
+.users label{
+    margin-left: 10px;
+    margin-right: 160px;
+    margin-top: 15px;
+    color: white;
+    
+}
+.users p{
+    margin-top: 10px;
+    margin-left: 165px;
+    font-family: Montserrat;
+    font-weight: 700;
+    line-height: 36.57px;
+    font-size: 30px;
+}

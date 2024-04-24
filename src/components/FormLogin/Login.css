@@ -1,0 +1,104 @@
+
+.tBody {
+    text-align: center;
+    justify-content: center;
+    min-height: 100vh;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    min-width: 100vh;
+    background: linear-gradient(71.17deg, #FEAF00 19.35%, #F8D442 90.12%);
+}
+
+.container {
+    border: 2px solid none;
+    width: 475px;
+    height: 550px;
+    background: #FFFFFF;
+    gap: 0px;
+    border-radius: 20px;
+    opacity: 0px;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+
+}
+.titleHeader h1 {
+    margin-top: 30px;
+    border-left: 6px solid orange;
+    display: inline-block;
+    padding: 5px;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 39.01px;
+
+        
+} 
+h3{
+    margin-top: 40px;
+}
+.p-1{
+    margin-bottom: 20px;
+    color: #6C6C6C;
+}
+.p-2{
+    margin-top: 20px;
+    color: #6C6C6C;
+}
+
+.form-group {
+    margin: 0 auto; /* Khoảng cách giữa mỗi cặp label và input */
+    width: 415px;
+    padding: 5px;
+    
+}
+.form-group input{
+    height: 44px;
+    width: 415px;
+    border: 1px solid #E5E5E5;
+    padding-left: 10px;
+}
+#email::placeholder {
+    text-align: left; 
+    
+}
+#password::placeholder{
+    text-align: left; 
+}
+.form-group p{
+    text-align: left;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17.07px;
+}
+.form-group button{
+    margin-top: 19px;
+    height: 44px;
+    width: 425px;
+    color: #FFFFFF;
+    background: #FEAF00;
+    border-radius: 4px ;
+    border: 1px;
+}
+a{
+    color: orange;
+}
+.form-group {
+    position: relative;
+}
+
+.form-group {
+    position: relative;
+}
+
+.password-input {
+    position: relative;
+}
+
+.toggle-icon {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
