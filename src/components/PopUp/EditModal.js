@@ -7,7 +7,7 @@ export default function EditModal(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const {id} =props
+    const {id,recallApi} =props
   return (
     <div>
       <button className="icon-edit" onClick={()=>{
@@ -27,9 +27,9 @@ export default function EditModal(props) {
                 </button>
       <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Edit User</Modal.Title>
+                    <Modal.Title >Edit User</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><EditForm userID={id}></EditForm></Modal.Body>
+                <Modal.Body><EditForm userID={id} recallApi={recallApi} handleClose={handleClose}></EditForm></Modal.Body>
             </Modal>
     </div>
   )

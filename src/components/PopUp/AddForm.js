@@ -6,7 +6,7 @@ import axios from 'axios';
 import moment from 'moment';
 import { ToastContainer,Toast } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-function BasicExample() {
+function BasicExample({recallApi}) {
     // State variables to hold form field values
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ function BasicExample() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [enrollNumber, setEnrollNumber] = useState('');
-    const [birthday, setBirthday] = useState('');
+    const [birthDay, setBirthday] = useState('');
     const [avatar, setAvatar] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -46,7 +46,7 @@ function BasicExample() {
             confirmPassword: confirmPassword,
             phoneNumber: phoneNumber,
             enrollNumber: enrollNumber,
-            birthday: birthday,
+            birthDay: birthDay,
             avatar: avatar
         }
         try {
@@ -56,6 +56,7 @@ function BasicExample() {
                 data: data
             })
             console.log(result)
+            recallApi()
         } catch (error) {
             console.log(error)
         }
@@ -103,8 +104,6 @@ function BasicExample() {
                     Please enter a valid email address (6 to 30 characters).
                 </Form.Control.Feedback>
             </Form.Group>
-
-
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Password</Form.Label>
                 <div className="password-input-container">
@@ -124,7 +123,6 @@ function BasicExample() {
                     </span>
                 </div>
             </Form.Group>
-
             <Form.Group className="mb-3" controlId="formBasicConfirmPassword">
                 <Form.Label>Confirm Password</Form.Label>
                 <div className="confirmPassword-input-container">
@@ -180,7 +178,7 @@ function BasicExample() {
                 <Form.Label>Birthday</Form.Label>
                 <Form.Control
                     type="date"
-                    value={birthday}
+                    value={birthDay}
                     onChange={handleBirthdayChange}
                     max={moment().format('YYYY-MM-DD')}
                 />

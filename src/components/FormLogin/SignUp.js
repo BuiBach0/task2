@@ -4,10 +4,19 @@ import axios from "axios";
 import { NavLink, useNavigate } from 'react-router-dom';
 // import { useNavigate } from "react-router-dom";
 export default function Login() {
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
   const nac = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
+  };
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   };
   const [students, setStudents] = useState([]);
   //   const nav = useNavigate()
@@ -26,8 +35,8 @@ export default function Login() {
     fetchData();
   }, []);
 
-  const [LoginData, setLoginData] = useState({ email: "", password: "" });
-
+  const [LoginData, setLoginData] = useState({ email: "", password: "",confrimPassword:"" });
+  console.log('1234',LoginData);
   const handleChange = (e) => {
     setLoginData({
       ...LoginData, [e.target.name]: e.target.value
@@ -35,7 +44,7 @@ export default function Login() {
 
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const checkEmail = /^(?=.{6,30}$)([^\s@]+@[^\s@]+\.[^\s@]+)$/;
     const checkPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@]).{8,12}$/;
@@ -56,16 +65,17 @@ export default function Login() {
       window.alert("Lỗi !!!! ")
     } else {
 
-      const loginInformation = students?.find(item => item.email === LoginData.email && item.password === LoginData.password);
-      if (loginInformation) {
-
-        localStorage.setItem("userDetail", JSON.stringify(loginInformation));
-        console.log(localStorage.getItem("userDetail"));
-        nac("/")
-        alert('succesfull')
-      } else {
-        window.alert("Dang nhap sai")
-      }
+        try {
+            const result = await  axios({
+                url: "https://66179268ed6b8fa434830f0b.mockapi.io/api/students",
+                method: "POST",
+                data: LoginData
+            })
+            console.log(result)
+            nac("/Login")
+        } catch (error) {
+            console.log(error)
+        }
     }
   }
   return (
@@ -76,7 +86,7 @@ export default function Login() {
             <h1>CRUD OPENRATIONS</h1>
           </div>
           <div>
-            <h3>SIGN IN</h3>
+            <h3>SIGN UP</h3>
             <p className='p-1'>Enter your credentials to access your account</p>
           </div>
           <div className="form-group">
@@ -103,15 +113,27 @@ export default function Login() {
             </div>
           </div>
           <div className="form-group">
-            <button onClick={handleSubmit}>SIGN IN</button>
-          </div>
-          <div>
-            <p className='p-2'>
-              Do you have account ?{" "}
-              <span>
-                <NavLink to={'/SignUp'} >Sign Up</NavLink>
+            <p htmlFor="password">Confirm Password</p>
+            <div className="password-input">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                id="confirmPassword"
+                name="confrimPassword"
+                placeholder="Enter your password"
+                onChange={handleChange}
+              />
+              <span className="toggle-icon" onClick={toggleConfirmPasswordVisibility}>
+                {showConfirmPassword? (
+                  <i className="fa-solid fa-eye" id="eye-icon-open" />
+                ) : (
+                  <i className="fa-solid fa-eye-slash" id="eye-icon-closed" />
+                )}
               </span>
-            </p>
+            </div>
+          </div>
+          <div className="form-group">
+            <button onClick={handleSubmit} style={{marginTop: '0px'}}>SIGN IN <NavLink to={"/Login"}></NavLink></button>
+            
           </div>
         </div>
       </div>

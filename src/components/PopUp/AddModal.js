@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import AddForm from './AddForm';
-export default function AddModal() {
+export default function AddModal(props) {
+    const {recallApi} = props;
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
@@ -18,7 +18,7 @@ export default function AddModal() {
                         <rect width="14" height="22" fill="white" />
                     </clipPath>
                 </defs>
-            </svg>  <Button variant="primary" onClick={handleShow} className='btn'>
+            </svg>  <Button variant="primary" onClick={handleShow} className='btn'  >
                     ADD NEW STUDENT
                 </Button>
             </div>
@@ -28,7 +28,7 @@ export default function AddModal() {
                 <Modal.Header closeButton>
                     <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><AddForm/></Modal.Body>
+                <Modal.Body><AddForm recallApi={recallApi}/></Modal.Body>
             </Modal>
         </div>
     )

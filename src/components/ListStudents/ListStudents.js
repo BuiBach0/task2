@@ -8,6 +8,7 @@ import axios from 'axios';
 import moment from 'moment';
 
 export default function ListStudents(props) {
+    const { dataTable,recallApi } = props
     const renderDate = (createdAt) => {
         return moment(createdAt._d).format('DD-MMM , YYYY');
     };
@@ -51,7 +52,7 @@ export default function ListStudents(props) {
         key: 'action',
         render: (_, record) => (
             <Space size="middle">
-                <EditModal id={_.id}/>
+                <EditModal id={_.id} recallApi={recallApi}/>
                 <button className="icon-delete" onClick={()=>{
                     deleteUser(_.id)
                 }}>
@@ -71,7 +72,7 @@ export default function ListStudents(props) {
     },
 ];
     // delete user
-    const { dataTable } = props
+   
      const deleteUser = async (id) => {
 
         try {
@@ -82,7 +83,7 @@ export default function ListStudents(props) {
             });
             if (result.status === 200) {
               
-                window.location.reload();
+                recallApi()
             } else {
              
             }
@@ -97,7 +98,7 @@ export default function ListStudents(props) {
         <div className='listStudents'>
             <div className='titleStudents'>
                 <div><label> Students List</label></div>
-             <AddModal></AddModal>
+             <AddModal recallApi={recallApi}></AddModal>
             </div>
             <div>
             </div>

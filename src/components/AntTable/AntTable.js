@@ -9,10 +9,12 @@ console.log(currentDate);
 
 export default function AntTable() {
     let dataTable = useOutletContext();
+    let feactApi = dataTable[2];
     dataTable =dataTable[1]
+  
     return (
         <div>
-            <ListStudents dataTable={dataTable}></ListStudents>
+            <ListStudents dataTable={dataTable} recallApi={feactApi}></ListStudents>
         </div>
 
     )

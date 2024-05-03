@@ -1,6 +1,7 @@
 
 import './App.css';
 import Login from './components/FormLogin/Login';
+import SignUp from './components/FormLogin/SignUp';
 import Menu from './components/SideBar/Menu';
 import Home from './components/Dashboard/Home';
 import StudentTable from './components/Students/StudentTable';
@@ -19,6 +20,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='Login' element={<Login></Login>}></Route>
+        <Route path='SignUp' element={<SignUp></SignUp>}></Route>
         <Route path='' element={<Menu></Menu>}>
           <Route path='' element={<Home></Home>}>
           </Route>
@@ -46,6 +48,7 @@ function App() {
       </div>
     </BrowserRouter>
 
+    
   );
 }
 

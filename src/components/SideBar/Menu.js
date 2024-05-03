@@ -14,26 +14,28 @@ export default function Menu() {
         userDetail = JSON.parse(userDetail)
     }
     const nav =useNavigate()
-    useEffect(() => {
-        if (userDetail == null) {
-            nav ("/Login")
-        }
-    }, [])
+   
     const {pathname
     } =useLocation();
     const handleLogOut =()=>{
         localStorage.removeItem("userDetail")
     }
     const [dataTable, setDataTable] = useState([])
-    useEffect(
-        () => {
-            const fetchApi = async () => {
-                const response = await fetch("https://66179268ed6b8fa434830f0b.mockapi.io/api/students");
-                const list = await response.json();
-                setDataTable(list);
-            }
+    
+    const fetchApi = async () => {
+        const response = await fetch("https://66179268ed6b8fa434830f0b.mockapi.io/api/students");
+        const list = await response.json();
+        setDataTable(list);
+    }
+
+    useEffect(() => {
+           
             fetchApi();
+            if (userDetail == null) {
+                nav ("/Login")
+            };
         }
+
         , [])
       const arrLength = dataTable.length;
     return (
@@ -114,10 +116,9 @@ export default function Menu() {
                         </div>
                     </div>
                     <div className="col-sm-10 ">
-                        
                         <InputSearch/> 
                         {/* <AntTable/> */}
-                        <Outlet context={[arrLength,dataTable]}></Outlet>
+                        <Outlet context={[arrLength,dataTable,fetchApi]}></Outlet>
                       
                     </div>
                 </div>

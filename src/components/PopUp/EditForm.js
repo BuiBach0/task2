@@ -5,25 +5,27 @@ import "./AddForm.css"
 import axios from 'axios';
 import moment from 'moment';
 import { toast } from 'react-toastify';
+import dayjs from 'dayjs';
 function EditForm(props) {
     // State variables to hold form field values
-    const { userID } = props;
+    const { userID,recallApi,handleClose } = props;
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [enrollNumber, setEnrollNumber] = useState('');
-    const [birthDay, setBirthday] = useState('');
+    const [birthDay, setBirthDay] = useState('');
     const [avatar, setAvatar] = useState('');
     // Form submission handler
     const handleBirthdayChange = (e) => {
         const selectedDate = e.target.value;
         const maxDate = moment().format('YYYY-MM-DD'); 
-        if (selectedDate <= maxDate) {
-            setBirthday(selectedDate);
+        const selectedDateWithTime = moment(selectedDate).format('YYYY-MM-DD[T]HH:mm:ss.SSS[Z]');
+        if (selectedDateWithTime <= maxDate) {
+            setBirthDay(selectedDateWithTime);
         } else {
-            
+            // Handle invalid date selection
         }
     };
     const handleSubmit = async (e) => {
@@ -37,9 +39,9 @@ function EditForm(props) {
             confirmPassword: confirmPassword,
             phone: phoneNumber,
             enroll: enrollNumber,
-            birthday: birthDay,
+            birthDay: birthDay,
             avatar: avatar
-            
+
         }
         try {
             const result = await axios({
@@ -47,34 +49,36 @@ function EditForm(props) {
                 method: "PUT",
                 data: data
             })
-            
+            recallApi()
+            handleClose()
             console.log(result)
         } catch (error) {
             console.log(error)
         }
-    };
-    useEffect(()=>{
-      const getData=async ()=>{
-        try {
-            const result = await axios({
-                url: `https://66179268ed6b8fa434830f0b.mockapi.io/api/students/${userID}`,
-                method: "Get",
-                
-            })
-            setAvatar(result.data.avatar)
-            setEmail(result.data.email)
-            setEnrollNumber(result.data.enroll)
-            setName(result.data.name)
-            setPhoneNumber(result.data.phone)
-            setBirthday(result.data.birthday)
-            
 
-        } catch (error) {
-            console.log(error)
+    };
+    useEffect(() => {
+        const getData = async () => {
+            try {
+                const result = await axios({
+                    url: `https://66179268ed6b8fa434830f0b.mockapi.io/api/students/${userID}`,
+                    method: "Get",
+
+                })
+                setAvatar(result.data.avatar)
+                setEmail(result.data.email)
+                setEnrollNumber(result.data.enroll)
+                setName(result.data.name)
+                setPhoneNumber(result.data.phone)
+                setBirthDay(dayjs( result.data.birthDay).format('YYYY-MM-DD'))
+
+
+            } catch (error) {
+                console.log(error)
+            }
         }
-      }
-    getData()
-    },[])
+        getData()
+    }, [])
     let userInformation = localStorage.getItem("userDetail");
     userInformation = JSON.parse(userInformation)
     const renderConfirmPassword = () => {
@@ -142,7 +146,8 @@ function EditForm(props) {
                     placeholder="Enter enrollment number"
                     value={enrollNumber}
                     onChange={(e) => setEnrollNumber(e.target.value)}
-                    dateFormat= 'dd/mm/yyyy'
+                    dateFormat='dd/mm/yyyy'
+
                 />
             </Form.Group>
 
@@ -152,7 +157,7 @@ function EditForm(props) {
                     type="date"
                     value={birthDay}
                     onChange={handleBirthdayChange}
-                    max={moment().format('YYYY-MM-DD')} 
+                    max={moment().format('YYYY-MM-DD')}
                 />
             </Form.Group>
 

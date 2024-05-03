@@ -82,6 +82,7 @@ h3{
 }
 a{
     color: orange;
+    text-decoration: none;
 }
 .form-group {
     position: relative;
